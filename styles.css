@@ -6,7 +6,7 @@
     --white: #e6f1ff;
     --green: #64ffda;
     --green-400: #4ade80;
-    --black: #000000;
+    --black: #1a1a2e;
     --gray-700: #374151;
     --gray-800: #1f2937;
     --gray-900: #111827;
@@ -21,7 +21,7 @@
 
 html {
     scrollbar-width: thin;
-    scrollbar-color: grey black;
+    scrollbar-color: grey #1a1a2e;
     scroll-behavior: smooth;
     background-color: var(--black);
     color: var(--slate);
@@ -77,7 +77,7 @@ img {
     position: fixed;
     width: 100%;
     z-index: 50;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(26, 26, 46, 0.95);
     backdrop-filter: blur(4px);
 }
 
@@ -198,7 +198,7 @@ img {
 .mobile-sidebar-overlay {
     position: fixed;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(26, 26, 46, 0.8);
     backdrop-filter: blur(4px);
     z-index: 40;
     display: none;
@@ -215,7 +215,7 @@ img {
     width: min(75vw, 320px);
     height: 100%;
     z-index: 50;
-    background-color: var(--gray-900);
+    background-color: #16162a;
     border-left: 1px solid var(--gray-700);
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
     transition: right 0.3s ease-in-out;
@@ -466,7 +466,7 @@ img {
 }
 
 .hero-name {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: bold;
     color: var(--lightest-slate);
     margin-bottom: 1rem;
@@ -474,12 +474,12 @@ img {
 
 @media (min-width: 640px) {
     .hero-name {
-        font-size: 4.5rem;
+        font-size: 3.5rem;
     }
 }
 
 .hero-tagline {
-    font-size: 2.5rem;
+    font-size: 1.75rem;
     font-weight: bold;
     color: var(--slate);
     margin-bottom: 2rem;
@@ -487,14 +487,14 @@ img {
 
 @media (min-width: 640px) {
     .hero-tagline {
-        font-size: 3.75rem;
+        font-size: 2.5rem;
     }
 }
 
 .hero-description {
     color: var(--slate);
     max-width: 36rem;
-    font-size: 1.125rem;
+    font-size: 1rem;
     margin-bottom: 3rem;
 }
 
