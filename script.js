@@ -59,26 +59,7 @@ function initMobileMenu() {
 
 // ===== Header Scroll Behavior =====
 function initHeaderScroll() {
-    const header = document.getElementById('header');
-    let lastScrollY = window.scrollY;
-    let ticking = false;
-
-    window.addEventListener('scroll', function() {
-        if (!ticking) {
-            window.requestAnimationFrame(function() {
-                if (window.scrollY > lastScrollY && window.scrollY > 100) {
-                    header.style.transform = 'translateY(-100%)';
-                } else {
-                    header.style.transform = 'translateY(0)';
-                }
-                lastScrollY = window.scrollY;
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
-
-    header.style.transition = 'transform 0.3s ease-in-out';
+    // Navbar is now static - no hide/show on scroll
 }
 
 // ===== Smooth Scroll =====
