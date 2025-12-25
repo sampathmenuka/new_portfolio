@@ -328,6 +328,11 @@ const skillsData = {
         { name: 'CI/CD', logo: 'https://cdn.jsdelivr.net/npm/devicon@2.16.0/icons/githubactions/githubactions-original.svg', isInvertLogo: false },
         { name: 'Docker', logo: 'https://cdn.jsdelivr.net/npm/devicon@2.16.0/icons/docker/docker-original.svg', isInvertLogo: false }
     ],
+    tools: [
+        { name: 'VS Code', logo: 'https://cdn.jsdelivr.net/npm/devicon@2.16.0/icons/vscode/vscode-original.svg', isInvertLogo: false },
+        { name: 'IntelliJ IDEA', logo: 'https://cdn.jsdelivr.net/npm/devicon@2.16.0/icons/intellij/intellij-original.svg', isInvertLogo: false },
+        { name: 'Postman', logo: 'https://cdn.jsdelivr.net/npm/devicon@2.16.0/icons/postman/postman-original.svg', isInvertLogo: false }
+    ],
     concepts: [
         { name: 'REST API', logo: 'https://cdn.jsdelivr.net/npm/devicon@2.16.0/icons/openapi/openapi-original.svg', isInvertLogo: false },
         { name: 'MVC', logo: 'https://cdn.jsdelivr.net/npm/devicon@2.16.0/icons/spring/spring-original.svg', isInvertLogo: false },
@@ -342,6 +347,7 @@ function renderSkills() {
     renderSkillCategory('backend-skills', skillsData.backends);
     renderSkillCategory('database-skills', skillsData.databases);
     renderSkillCategory('ops-skills', skillsData.ops);
+    renderSkillCategory('tools-skills', skillsData.tools);
     renderSkillCategory('concepts-skills', skillsData.concepts);
 }
 
