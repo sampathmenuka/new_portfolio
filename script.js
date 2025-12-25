@@ -14,7 +14,103 @@ document.addEventListener('DOMContentLoaded', function() {
     renderSkills();
     renderProjects();
     initHeaderScroll();
+    initCursorEffect();
 });
+
+// ===== Custom Cursor Effect =====
+function initCursorEffect() {
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorTrail = document.querySelector('.cursor-trail');
+    
+    if (!cursorDot || !cursorTrail) return;
+    
+    // Check if device supports hover (not touch)
+    if (window.matchMedia('(hover: none)').matches) return;
+    
+    let cursorX = 0;
+    let cursorY = 0;
+    
+    // Create trail dots
+    const trailLength = 12;
+    const trailDots = [];
+    
+    for (let i = 0; i < trailLength; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'cursor-trail-dot';
+        cursorTrail.appendChild(dot);
+        trailDots.push({
+            element: dot,
+            x: 0,
+            y: 0
+        });
+    }
+    
+    // Track mouse position
+    document.addEventListener('mousemove', function(e) {
+        cursorX = e.clientX;
+        cursorY = e.clientY;
+        
+        // Move dot immediately
+        cursorDot.style.left = cursorX + 'px';
+        cursorDot.style.top = cursorY + 'px';
+        
+        // Show cursors
+        cursorDot.classList.add('visible');
+        trailDots.forEach(dot => dot.element.classList.add('visible'));
+    });
+    
+    // Animate trail with smooth follow
+    function animateCursor() {
+        // Animate trail dots with different speeds
+        trailDots.forEach((dot, index) => {
+            const speed = 0.08 - (index * 0.005); // Each dot slightly slower
+            
+            if (index === 0) {
+                // First dot follows cursor directly
+                dot.x += (cursorX - dot.x) * speed;
+                dot.y += (cursorY - dot.y) * speed;
+            } else {
+                // Other dots follow previous dot
+                dot.x += (trailDots[index - 1].x - dot.x) * speed;
+                dot.y += (trailDots[index - 1].y - dot.y) * speed;
+            }
+            
+            dot.element.style.left = dot.x + 'px';
+            dot.element.style.top = dot.y + 'px';
+            
+            // Fade out based on position in trail
+            const opacity = 0.6 - (index * 0.04);
+            dot.element.style.opacity = opacity;
+        });
+        
+        requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+    
+    // Hover effect on interactive elements - scale main dot
+    const interactiveElements = document.querySelectorAll('a, button, input, textarea, .skill-card, .project-card, .experience-card');
+    
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', function() {
+            cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
+        });
+        
+        el.addEventListener('mouseleave', function() {
+            cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+    });
+    
+    // Hide cursor when leaving window
+    document.addEventListener('mouseleave', function() {
+        cursorDot.classList.remove('visible');
+        trailDots.forEach(dot => dot.element.classList.remove('visible'));
+    });
+    
+    document.addEventListener('mouseenter', function() {
+        cursorDot.classList.add('visible');
+        trailDots.forEach(dot => dot.element.classList.add('visible'));
+    });
+}
 
 // ===== Mobile Menu =====
 function initMobileMenu() {
