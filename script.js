@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     renderProjects();
     initHeaderScroll();
     initCursorEffect();
+    initSkillsTabs();
 });
 
 // ===== Custom Cursor Effect =====
@@ -109,6 +110,29 @@ function initCursorEffect() {
     document.addEventListener('mouseenter', function() {
         cursorDot.classList.add('visible');
         trailDots.forEach(dot => dot.element.classList.add('visible'));
+    });
+}
+
+// ===== Skills Tabs =====
+function initSkillsTabs() {
+    const tabs = document.querySelectorAll('.skill-tab');
+    const panels = document.querySelectorAll('.skills-panel');
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const category = this.getAttribute('data-category');
+            
+            // Remove active class from all tabs and panels
+            tabs.forEach(t => t.classList.remove('active'));
+            panels.forEach(p => p.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding panel
+            this.classList.add('active');
+            const activePanel = document.querySelector(`[data-panel="${category}"]`);
+            if (activePanel) {
+                activePanel.classList.add('active');
+            }
+        });
     });
 }
 

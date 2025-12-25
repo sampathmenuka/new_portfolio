@@ -156,22 +156,36 @@
             <!-- Skills Section -->
             <section id="skills" class="section-container">
                 <div class="skills-wrapper" data-aos="fade-up" data-aos-duration="1000">
-                    <h2 class="section-title">Skills</h2>
-
-                    <h3 class="skills-category">Front-end</h3>
-                    <div class="skills-grid" id="frontend-skills"></div>
-
-                    <h3 class="skills-category">Back-end</h3>
-                    <div class="skills-grid" id="backend-skills"></div>
-
-                    <h3 class="skills-category">Database</h3>
-                    <div class="skills-grid" id="database-skills"></div>
-
-                    <h3 class="skills-category">Ops</h3>
-                    <div class="skills-grid" id="ops-skills"></div>
-
-                    <h3 class="skills-category">Concepts & Practices</h3>
-                    <div class="skills-grid" id="concepts-skills"></div>
+                    <h2 class="section-title">Skills & Expertise</h2>
+                    <p class="skills-subtitle">Technologies and tools I work with</p>
+                    
+                    <!-- Skills Tab Navigation -->
+                    <div class="skills-tabs">
+                        <button class="skill-tab active" data-category="frontend">Frontend</button>
+                        <button class="skill-tab" data-category="backend">Backend</button>
+                        <button class="skill-tab" data-category="database">Database</button>
+                        <button class="skill-tab" data-category="ops">DevOps</button>
+                        <button class="skill-tab" data-category="concepts">Concepts</button>
+                    </div>
+                    
+                    <!-- Skills Content -->
+                    <div class="skills-content">
+                        <div class="skills-panel active" data-panel="frontend">
+                            <div class="skills-grid" id="frontend-skills"></div>
+                        </div>
+                        <div class="skills-panel" data-panel="backend">
+                            <div class="skills-grid" id="backend-skills"></div>
+                        </div>
+                        <div class="skills-panel" data-panel="database">
+                            <div class="skills-grid" id="database-skills"></div>
+                        </div>
+                        <div class="skills-panel" data-panel="ops">
+                            <div class="skills-grid" id="ops-skills"></div>
+                        </div>
+                        <div class="skills-panel" data-panel="concepts">
+                            <div class="skills-grid" id="concepts-skills"></div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
