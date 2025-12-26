@@ -403,6 +403,50 @@ const projectsData = [
         techStack: ['Angular', 'Tailwind CSS', 'Flask (Python)', 'MongoDB', 'AWS'],
         image: 'assets/docu-query-ai.webp',
         aosImage: 'fade-left'
+    },
+    {
+        title: 'E-Commerce Platform',
+        description: [
+            'Built a full-featured e-commerce platform with product catalog, shopping cart, and secure payment processing.',
+            'Implemented user authentication, order management, and inventory tracking system.',
+            'Integrated third-party payment gateways and shipping APIs for seamless checkout experience.'
+        ],
+        techStack: ['React.js', 'Node.js', 'Express', 'MongoDB', 'Stripe API'],
+        image: 'assets/project_1.png',
+        aosImage: 'fade-right'
+    },
+    {
+        title: 'Real-Time Chat Application',
+        description: [
+            'Developed a real-time messaging application with group chats, file sharing, and video call capabilities.',
+            'Implemented WebSocket connections for instant message delivery and presence detection.',
+            'Added end-to-end encryption for secure communications and message history persistence.'
+        ],
+        techStack: ['React.js', 'Socket.io', 'Node.js', 'MongoDB', 'WebRTC'],
+        image: 'assets/project_2.png',
+        aosImage: 'fade-left'
+    },
+    {
+        title: 'Task Management System',
+        description: [
+            'Created a collaborative task management platform with kanban boards, team collaboration features, and deadline tracking.',
+            'Implemented drag-and-drop functionality, real-time updates, and customizable project workflows.',
+            'Added analytics dashboard for tracking team productivity and project progress metrics.'
+        ],
+        techStack: ['Vue.js', 'Spring Boot', 'MySQL', 'Docker', 'Redis'],
+        image: 'assets/task-management.webp',
+        aosImage: 'fade-right'
+    },
+    {
+        title: 'Weather Forecast Dashboard',
+        description: [
+            'Built an interactive weather dashboard with real-time weather data, forecasts, and location-based services.',
+            'Integrated multiple weather APIs for accurate predictions and historical weather data analysis.',
+            'Designed responsive UI with interactive maps, charts, and weather alerts system.'
+        ],
+        techStack: ['React.js', 'TypeScript', 'OpenWeather API', 'Chart.js', 'Tailwind CSS'],
+        image: 'assets/weather-dashboard.webp',
+        aosImage: 'fade-left'
     }
 ];
 
