@@ -370,7 +370,7 @@ const projectsData = [
             'Our objective was to streamline the media planning process, minimizing errors and ensuring compliance, allowing teams to focus on strategic decision-making and creativity.'
         ],
         techStack: ['Angular', '.NET Framework', 'SQL Server', 'Microsoft IIS', 'Firebase', 'CI/CD'],
-        image: 'assets/media-management-platform.webp',
+        image: 'assets/project_1.png',
         aosImage: 'fade-right'
     },
     {
@@ -380,7 +380,7 @@ const projectsData = [
             'Designed and implemented a user-friendly interface using Angular with Flask backend to analyze smiles in real-time.'
         ],
         techStack: ['Angular', 'Python', 'SQL Server', 'AWS'],
-        image: 'assets/smile-project.webp',
+        image: 'assets/project_2.png',
         aosImage: 'fade-left'
     },
     {
@@ -390,7 +390,7 @@ const projectsData = [
             'The system provides assistance and information to guests in multiple languages, enhancing their overall experience while streamlining hotel operations.'
         ],
         techStack: ['Node.js', 'Python', 'OpenAI API', 'Nginx'],
-        image: 'assets/ai-receptionist.webp',
+        image: 'assets/project_1.png',
         aosImage: 'fade-right'
     },
     {
@@ -401,7 +401,7 @@ const projectsData = [
             'Implemented role-based access control, ensuring only authorized users can manage documents.'
         ],
         techStack: ['Angular', 'Tailwind CSS', 'Flask (Python)', 'MongoDB', 'AWS'],
-        image: 'assets/docu-query-ai.webp',
+        image: 'assets/project_2.png',
         aosImage: 'fade-left'
     },
     {
@@ -434,7 +434,7 @@ const projectsData = [
             'Added analytics dashboard for tracking team productivity and project progress metrics.'
         ],
         techStack: ['Vue.js', 'Spring Boot', 'MySQL', 'Docker', 'Redis'],
-        image: 'assets/task-management.webp',
+        image: 'assets/project_1.png',
         aosImage: 'fade-right'
     },
     {
@@ -445,17 +445,25 @@ const projectsData = [
             'Designed responsive UI with interactive maps, charts, and weather alerts system.'
         ],
         techStack: ['React.js', 'TypeScript', 'OpenWeather API', 'Chart.js', 'Tailwind CSS'],
-        image: 'assets/weather-dashboard.webp',
+        image: 'assets/project_2.png',
         aosImage: 'fade-left'
     }
 ];
 
 function renderProjects() {
     const container = document.getElementById('projects-list');
-    container.innerHTML = projectsData.map(project => `
+    if (!container) {
+        console.error('Projects container not found');
+        return;
+    }
+    
+    console.log('Container found, rendering projects...');
+    console.log('Projects data:', projectsData);
+    
+    const html = projectsData.map(project => `
         <div class="project-item">
             <div class="project-image-container" data-aos="${project.aosImage}">
-                <img src="${project.image}" alt="${project.title} project screenshot" loading="lazy" class="project-image">
+                <img src="${project.image}" alt="${project.title} project screenshot" loading="lazy" class="project-image" onerror="console.error('Failed to load image: ${project.image}')">
             </div>
             <div class="project-content" data-aos="fade-up">
                 <p class="project-label">Featured Project</p>
@@ -471,4 +479,13 @@ function renderProjects() {
             </div>
         </div>
     `).join('');
+    
+    container.innerHTML = html;
+    console.log('Projects rendered:', projectsData.length);
+    console.log('Container HTML length:', container.innerHTML.length);
+    
+    // Reinitialize AOS for dynamically added content
+    if (typeof AOS !== 'undefined') {
+        AOS.refresh();
+    }
 }
