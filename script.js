@@ -364,89 +364,37 @@ function renderSkillCategory(containerId, skills) {
 // ===== Projects Data and Rendering =====
 const projectsData = [
     {
-        title: 'Media Management Platform',
+        title: 'ParkSwift – Online Parking Reservation System',
         description: [
-            'This project aimed to tackle the complexities of media planning across diverse channels, where challenges such as errors and compliance issues frequently arise. These hurdles often result in time-consuming tasks and potential regulatory risks, diverting attention away from strategic thinking and creative endeavours.',
-            'Our objective was to streamline the media planning process, minimizing errors and ensuring compliance, allowing teams to focus on strategic decision-making and creativity.'
+            'A full-stack parking slot booking and management system connecting parking space owners and drivers.',
+            'Features role-based dashboards for users, parking owners, and admins, real-time slot availability, secure Stripe payments, booking management, notifications, reviews, and analytics.',
+            'Built with a React frontend and Node.js + Express backend using MongoDB. Led the project as Group Leader.'
         ],
-        techStack: ['Angular', '.NET Framework', 'SQL Server', 'Microsoft IIS', 'Firebase', 'CI/CD'],
+        techStack: ['Node.js', 'Express.js', 'MongoDB', 'React', 'Stripe API', 'JWT', 'Cloudinary', 'Tailwind CSS'],
         image: 'assets/project_1.png',
         aosImage: 'fade-right'
     },
     {
-        title: 'Smile Analysis Web Application',
+        title: 'PerfectCV - AI-Powered CV Optimization System',
         description: [
-            'Developed and deployed a smile detection application for elderly residents in Japanese old age homes using computer vision and machine learning algorithms.',
-            'Designed and implemented a user-friendly interface using Angular with Flask backend to analyze smiles in real-time.'
+            'An AI-powered CV optimization platform that analyzes resumes for ATS compatibility, provides intelligent improvement suggestions, and calculates ATS scores.',
+            'Features secure authentication, CV upload/download, AI chatbot support using Google Gemini AI, and automated resume enhancement with optimized professional PDF generation.',
+            'Built with a Flask backend and React frontend, implementing advanced document processing and AI integration.'
         ],
-        techStack: ['Angular', 'Python', 'SQL Server', 'AWS'],
+        techStack: ['Python', 'Flask', 'MongoDB', 'Google Gemini AI', 'React', 'Tailwind CSS', 'PyPDF2', 'FPDF'],
         image: 'assets/project_2.png',
         aosImage: 'fade-left'
     },
     {
-        title: 'AI Receptionist',
+        title: 'Hotel Management System',
         description: [
-            'The project involves the implementation of a receptionist system for tourists and hotel guests, utilizing a multilingual AI avatar.',
-            'The system provides assistance and information to guests in multiple languages, enhancing their overall experience while streamlining hotel operations.'
+            'A Spring Boot Based REST API for managing comprehensive hotel operations, including hotel chains, branches, rooms, facilities, and room images.',
+            'Implements a layered architecture with DTOs, role-based access control (user, admin, host), pagination, and standardized API responses.',
+            'Features global exception handling, image storage using BLOBs, and auto-generated database schemas. Designed following REST best practices.',
         ],
-        techStack: ['Node.js', 'Python', 'OpenAI API', 'Nginx'],
+        techStack: ['Java 17', 'Spring Boot', 'Spring Data JPA', 'Hibernate', 'MySQL', 'Maven', 'Lombok'],
         image: 'assets/project_1.png',
         aosImage: 'fade-right'
-    },
-    {
-        title: 'DocuQuery AI',
-        description: [
-            'Developed an AI-powered document query system allowing users to upload PDFs and ask questions based on the document content.',
-            'Designed and integrated an Angular-based frontend with a Flask backend for seamless document processing.',
-            'Implemented role-based access control, ensuring only authorized users can manage documents.'
-        ],
-        techStack: ['Angular', 'Tailwind CSS', 'Flask (Python)', 'MongoDB', 'AWS'],
-        image: 'assets/project_2.png',
-        aosImage: 'fade-left'
-    },
-    {
-        title: 'E-Commerce Platform',
-        description: [
-            'Built a full-featured e-commerce platform with product catalog, shopping cart, and secure payment processing.',
-            'Implemented user authentication, order management, and inventory tracking system.',
-            'Integrated third-party payment gateways and shipping APIs for seamless checkout experience.'
-        ],
-        techStack: ['React.js', 'Node.js', 'Express', 'MongoDB', 'Stripe API'],
-        image: 'assets/project_1.png',
-        aosImage: 'fade-right'
-    },
-    {
-        title: 'Real-Time Chat Application',
-        description: [
-            'Developed a real-time messaging application with group chats, file sharing, and video call capabilities.',
-            'Implemented WebSocket connections for instant message delivery and presence detection.',
-            'Added end-to-end encryption for secure communications and message history persistence.'
-        ],
-        techStack: ['React.js', 'Socket.io', 'Node.js', 'MongoDB', 'WebRTC'],
-        image: 'assets/project_2.png',
-        aosImage: 'fade-left'
-    },
-    {
-        title: 'Task Management System',
-        description: [
-            'Created a collaborative task management platform with kanban boards, team collaboration features, and deadline tracking.',
-            'Implemented drag-and-drop functionality, real-time updates, and customizable project workflows.',
-            'Added analytics dashboard for tracking team productivity and project progress metrics.'
-        ],
-        techStack: ['Vue.js', 'Spring Boot', 'MySQL', 'Docker', 'Redis'],
-        image: 'assets/project_1.png',
-        aosImage: 'fade-right'
-    },
-    {
-        title: 'Weather Forecast Dashboard',
-        description: [
-            'Built an interactive weather dashboard with real-time weather data, forecasts, and location-based services.',
-            'Integrated multiple weather APIs for accurate predictions and historical weather data analysis.',
-            'Designed responsive UI with interactive maps, charts, and weather alerts system.'
-        ],
-        techStack: ['React.js', 'TypeScript', 'OpenWeather API', 'Chart.js', 'Tailwind CSS'],
-        image: 'assets/project_2.png',
-        aosImage: 'fade-left'
     }
 ];
 
