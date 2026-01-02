@@ -535,6 +535,39 @@ img {
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     margin-bottom: 1rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.experience-image {
+    flex-shrink: 0;
+    width: 200px;
+    order: 2;
+}
+
+.experience-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    object-fit: cover;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+.experience-card > div:not(.experience-image) {
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .experience-card {
+        flex-direction: column;
+    }
+    
+    .experience-image {
+        width: 100%;
+        order: 1;
+        margin-bottom: 1rem;
+    }
 }
 
 .job-title {
