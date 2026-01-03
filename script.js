@@ -14,102 +14,88 @@ document.addEventListener('DOMContentLoaded', function() {
     renderSkills();
     renderProjects();
     initHeaderScroll();
-    initCursorEffect();
+    // initCursorEffect(); // Disabled
     initSkillsTabs();
 });
 
-// ===== Custom Cursor Effect =====
+// ===== Red Antigravity Trailing Cursor Effect =====
+// Function to create a Red Antigravity trailing cursor
+// 1. Create dot and ring elements
+// 2. Hide system cursor
+// 3. Track mouse movement with a delay on the ring
+// 4. Add hover scaling for buttons
 function initCursorEffect() {
     const cursorDot = document.querySelector('.cursor-dot');
-    const cursorTrail = document.querySelector('.cursor-trail');
+    const cursorRing = document.querySelector('.cursor-ring');
     
-    if (!cursorDot || !cursorTrail) return;
+    if (!cursorDot || !cursorRing) return;
     
     // Check if device supports hover (not touch)
     if (window.matchMedia('(hover: none)').matches) return;
     
-    let cursorX = 0;
-    let cursorY = 0;
+    // Hide system cursor
+    document.body.style.cursor = 'none';
+    document.querySelectorAll('a, button, input, textarea').forEach(el => {
+        el.style.cursor = 'none';
+    });
     
-    // Create trail dots
-    const trailLength = 12;
-    const trailDots = [];
-    
-    for (let i = 0; i < trailLength; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'cursor-trail-dot';
-        cursorTrail.appendChild(dot);
-        trailDots.push({
-            element: dot,
-            x: 0,
-            y: 0
-        });
-    }
+    let mouseX = 0;
+    let mouseY = 0;
+    let ringX = 0;
+    let ringY = 0;
     
     // Track mouse position
     document.addEventListener('mousemove', function(e) {
-        cursorX = e.clientX;
-        cursorY = e.clientY;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
         
         // Move dot immediately
-        cursorDot.style.left = cursorX + 'px';
-        cursorDot.style.top = cursorY + 'px';
+        cursorDot.style.left = mouseX + 'px';
+        cursorDot.style.top = mouseY + 'px';
         
         // Show cursors
         cursorDot.classList.add('visible');
-        trailDots.forEach(dot => dot.element.classList.add('visible'));
+        cursorRing.classList.add('visible');
     });
     
-    // Animate trail with smooth follow
-    function animateCursor() {
-        // Animate trail dots with different speeds
-        trailDots.forEach((dot, index) => {
-            const speed = 0.08 - (index * 0.005); // Each dot slightly slower
-            
-            if (index === 0) {
-                // First dot follows cursor directly
-                dot.x += (cursorX - dot.x) * speed;
-                dot.y += (cursorY - dot.y) * speed;
-            } else {
-                // Other dots follow previous dot
-                dot.x += (trailDots[index - 1].x - dot.x) * speed;
-                dot.y += (trailDots[index - 1].y - dot.y) * speed;
-            }
-            
-            dot.element.style.left = dot.x + 'px';
-            dot.element.style.top = dot.y + 'px';
-            
-            // Fade out based on position in trail
-            const opacity = 0.6 - (index * 0.04);
-            dot.element.style.opacity = opacity;
-        });
+    // Animate ring with delay (antigravity trailing effect)
+    function animateRing() {
+        // Ring follows with delay
+        const delay = 0.15; // Smooth delay for antigravity effect
+        ringX += (mouseX - ringX) * delay;
+        ringY += (mouseY - ringY) * delay;
         
-        requestAnimationFrame(animateCursor);
+        cursorRing.style.left = ringX + 'px';
+        cursorRing.style.top = ringY + 'px';
+        
+        requestAnimationFrame(animateRing);
     }
-    animateCursor();
+    animateRing();
     
-    // Hover effect on interactive elements - scale main dot
+    // Hover effect on interactive elements - scale both dot and ring
     const interactiveElements = document.querySelectorAll('a, button, input, textarea, .skill-card, .project-card, .experience-card');
     
     interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', function() {
-            cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            cursorDot.style.transform = 'translate(-50%, -50%) scale(2)';
+            cursorRing.style.transform = 'translate(-50%, -50%) scale(1.5)';
         });
         
         el.addEventListener('mouseleave', function() {
             cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursorRing.style.transform = 'translate(-50%, -50%) scale(1)';
         });
     });
     
     // Hide cursor when leaving window
     document.addEventListener('mouseleave', function() {
         cursorDot.classList.remove('visible');
-        trailDots.forEach(dot => dot.element.classList.remove('visible'));
+        cursorRing.classList.remove('visible');
     });
     
     document.addEventListener('mouseenter', function() {
         cursorDot.classList.add('visible');
-        trailDots.forEach(dot => dot.element.classList.add('visible'));
+        cursorRing.classList.add('visible');
     });
 }
 
