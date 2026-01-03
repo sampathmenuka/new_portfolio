@@ -247,28 +247,22 @@ function initContactForm() {
 
         if (!isValid) return;
 
-        // Show loading
-        spinner.classList.remove('hidden');
-        submitBtn.disabled = true;
-
-        // Simulate form submission (replace with actual API call)
-        try {
-            await simulateFormSubmission({
-                name: name.value,
-                email: email.value,
-                message: message.value
-            });
-
-            formMessage.textContent = 'Message sent successfully! I\'ll get back to you soon.';
-            formMessage.classList.add('success');
+        // Create mailto link
+        const mailtoLink = `mailto:sampathwgw@gmail.com?subject=Message from ${encodeURIComponent(name.value)}&body=${encodeURIComponent(`Name: ${name.value}\nEmail: ${email.value}\n\nMessage:\n${message.value}`)}`;
+        
+        // Open email client
+        window.location.href = mailtoLink;
+        
+        // Show success message
+        formMessage.textContent = 'Opening your email client...';
+        formMessage.classList.add('success');
+        
+        // Reset form after a short delay
+        setTimeout(() => {
             form.reset();
-        } catch (error) {
-            formMessage.textContent = 'Something went wrong. Please try again.';
-            formMessage.classList.add('error');
-        } finally {
-            spinner.classList.add('hidden');
-            submitBtn.disabled = false;
-        }
+            formMessage.textContent = '';
+            formMessage.className = 'form-message';
+        }, 2000);
     });
 
     // Add blur validation
