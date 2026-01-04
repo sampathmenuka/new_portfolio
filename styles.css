@@ -1,3 +1,4 @@
+/* ===== CSS Variables ===== */
 :root {
     --slate: #8892b0;
     --light-slate: #a8b2d1;
@@ -11,6 +12,7 @@
     --gray-900: #111827;
 }
 
+/* ===== Reset & Base Styles ===== */
 * {
     margin: 0;
     padding: 0;
@@ -60,16 +62,30 @@ img {
     height: auto;
 }
 
+/* ===== Utility Classes ===== */
 .min-h-screen {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 .hidden {
     display: none !important;
 }
 
+/* ===== Header & Navigation ===== */
 .nav-container {
     position: fixed;
     width: 100%;
@@ -126,6 +142,7 @@ img {
 }
 
 .nav-link {
+    position: relative;
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--slate);
@@ -166,8 +183,21 @@ img {
     box-shadow: 0 10px 15px -3px rgba(74, 222, 128, 0.25);
 }
 
-.mobile-menu-btn {
-    display: none !important;
+/* Mobile Menu Button */
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+@media (min-width: 768px) {
+    .mobile-menu-btn {
+        display: none;
+    }
 }
 
 .menu-icon {
@@ -177,6 +207,7 @@ img {
 }
 
 .mobile-sidebar-overlay {
+    position: fixed;
     inset: 0;
     background-color: rgba(26, 26, 46, 0.8);
     backdrop-filter: blur(4px);
@@ -280,6 +311,7 @@ img {
 
 /* ===== Sidebars ===== */
 .left-sidebar {
+    display: none;
     position: fixed;
     bottom: 0;
     left: 2.5rem;
@@ -376,6 +408,7 @@ img {
 
 /* ===== Main Content ===== */
 .main-content {
+    background-color: var(--black);
     padding: 5rem 0.5rem 0;
 }
 
@@ -388,6 +421,7 @@ img {
 /* ===== Section Container ===== */
 .section-container {
     max-width: 72rem;
+    margin: 0 auto;
     padding: 2rem 1rem;
 }
 
@@ -420,6 +454,7 @@ img {
 /* ===== Hero Section ===== */
 .hero-section {
     min-height: calc(100vh - 5rem);
+    display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 2rem;
@@ -568,6 +603,7 @@ img {
 .experience-grid {
     display: grid;
     gap: 2rem;
+    grid-template-columns: 1fr;
     max-width: 100%;
 }
 
@@ -658,6 +694,7 @@ img {
     margin-bottom: 0.5rem;
 }
 
+/* ===== Skills Section ===== */
 .skills-wrapper {
     margin-top: 3rem;
 }
@@ -830,6 +867,7 @@ img {
     color: var(--green-400);
 }
 
+/* ===== Projects Section (Modern Card Design) ===== */
 .projects-grid-modern {
     display: grid;
     grid-template-columns: 1fr;
@@ -1007,6 +1045,7 @@ img {
 }
 
 /* ===== Old Projects Section (Kept for backwards compatibility) ===== */
+.projects-container {
     display: flex;
     flex-direction: column;
     gap: 6rem;
@@ -1102,6 +1141,7 @@ img {
 }
 
 /* ===== Contact Section ===== */
+.contact-section {
     text-align: center;
 }
 
@@ -1222,6 +1262,7 @@ img {
 
 /* ===== Footer ===== */
 .footer {
+    background-color: var(--black);
 }
 
 .footer-social {
@@ -1331,10 +1372,66 @@ img {
 /* ===== AOS Animation Override ===== */
 [data-aos] {
     pointer-events: auto !important;
-[data-aos] {
-    pointer-events: auto !important;
 }
 
+/* ===== Red Antigravity Trailing Cursor Styles (Disabled) ===== */
+
+/* Cursor dot - follows immediately */
+.cursor-dot {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease-in-out, transform 0.2s ease-out;
+    z-index: 9999;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.8);
+}
+
+/* Cursor ring - follows with delay (antigravity effect) */
+.cursor-ring {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    border: 2px solid rgba(239, 68, 68, 0.5);
+    border-radius: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease-in-out, transform 0.2s ease-out;
+    z-index: 9998;
+}
+
+.cursor-dot.visible,
+.cursor-ring.visible {
+    opacity: 1;
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    body {
+        cursor: auto !important;
+    }
+    
+    .cursor-dot,
+    .cursor-ring {
+        display: none;
+    }
+}
+
+/* ===== Enhanced Mobile Responsiveness ===== */
+
+/* Extra small devices (phones, less than 480px) */
+@media (max-width: 479px) {
+    .nav-content {
+        padding: 0 0.75rem;
     }
     
     .logo-img {
@@ -1476,6 +1573,7 @@ img {
     }
 }
 
+/* Landscape orientation adjustments */
 @media (max-height: 600px) and (orientation: landscape) {
     .hero-section {
         min-height: auto;
@@ -1487,9 +1585,11 @@ img {
     }
 }
 
+/* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
     .nav-link:active,
     .mobile-nav-link:active,
+    .social-link:active,
     .hero-cta:active,
     .skill-card:active,
     .project-card-modern:active,
@@ -1498,6 +1598,7 @@ img {
     }
 }
 
+/* Print styles */
 @media print {
     .nav-container,
     .mobile-sidebar,
@@ -1511,6 +1612,7 @@ img {
     
     body {
         background: white;
+        color: black;
     }
     
     .section-container {
