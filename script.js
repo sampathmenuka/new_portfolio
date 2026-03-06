@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScroll();
     initContactForm();
     renderSkills();
-    renderProjects();
+    // renderProjects(); // Projects are already rendered statically in HTML
     initHeaderScroll();
     // initCursorEffect(); // Disabled
     initSkillsTabs();
@@ -193,7 +193,11 @@ function initSmoothScroll() {
     });
 }
 
-// ===== Contact Form =====
+// ===== Contact Form (Formspree) =====
+// TO ACTIVATE: Sign up at https://formspree.io, create a form, and replace
+// 'YOUR_FORM_ID' below with your actual Formspree form ID (e.g. 'xpwzgkqb')
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+
 function initContactForm() {
     const form = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
@@ -202,7 +206,7 @@ function initContactForm() {
 
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
+
         // Reset errors
         document.querySelectorAll('.form-group').forEach(group => {
             group.classList.remove('error');
@@ -220,44 +224,82 @@ function initContactForm() {
             name.parentElement.classList.add('error');
             isValid = false;
         }
-
         if (!email.value.trim() || !isValidEmail(email.value)) {
             email.parentElement.classList.add('error');
             isValid = false;
         }
-
         if (!message.value.trim()) {
             message.parentElement.classList.add('error');
             isValid = false;
         }
-
         if (!isValid) return;
 
-        // Create mailto link
-        const mailtoLink = `mailto:sampathwgw@gmail.com?subject=Message from ${encodeURIComponent(name.value)}&body=${encodeURIComponent(`Name: ${name.value}\nEmail: ${email.value}\n\nMessage:\n${message.value}`)}`;
-        
-        // Open email client
-        window.location.href = mailtoLink;
-        
-        // Show success message
-        formMessage.textContent = 'Opening your email client...';
-        formMessage.classList.add('success');
-        
-        // Reset form after a short delay
+        // Show loading state
+        submitBtn.disabled = true;
+        if (spinner) spinner.classList.remove('hidden');
+
+        // Check if Formspree ID has been configured
+        if (FORMSPREE_ENDPOINT.includes('YOUR_FORM_ID')) {
+            // Fallback: open mailto if Formspree not yet configured
+            const mailtoLink = `mailto:sampathwgw@gmail.com?subject=Portfolio Contact: ${encodeURIComponent(name.value)}&body=${encodeURIComponent(`Name: ${name.value}\nEmail: ${email.value}\n\nMessage:\n${message.value}`)}`;
+            window.location.href = mailtoLink;
+            formMessage.textContent = '📧 Opening your email client...';
+            formMessage.classList.add('success');
+            submitBtn.disabled = false;
+            if (spinner) spinner.classList.add('hidden');
+            setTimeout(() => { form.reset(); formMessage.textContent = ''; formMessage.className = 'form-message'; }, 2000);
+            return;
+        }
+
+        try {
+            const response = await fetch(FORMSPREE_ENDPOINT, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name.value.trim(),
+                    email: email.value.trim(),
+                    message: message.value.trim()
+                })
+            });
+
+            if (response.ok) {
+                formMessage.textContent = '✅ Message sent! I\'ll get back to you soon.';
+                formMessage.classList.add('success');
+                form.reset();
+            } else {
+                const data = await response.json();
+                throw new Error(data.error || 'Submission failed');
+            }
+        } catch (error) {
+            console.error('Form error:', error);
+            formMessage.textContent = '❌ Could not send message. Please email sampathwgw@gmail.com directly.';
+            formMessage.classList.add('error-msg');
+        } finally {
+            submitBtn.disabled = false;
+            if (spinner) spinner.classList.add('hidden');
+        }
+
         setTimeout(() => {
-            form.reset();
             formMessage.textContent = '';
             formMessage.className = 'form-message';
-        }, 2000);
+        }, 6000);
     });
 
-    // Add blur validation
+    // Real-time blur validation
     ['name', 'email', 'message'].forEach(id => {
         const input = document.getElementById(id);
         input.addEventListener('blur', function() {
             if (!this.value.trim() || (id === 'email' && !isValidEmail(this.value))) {
                 this.parentElement.classList.add('error');
             } else {
+                this.parentElement.classList.remove('error');
+            }
+        });
+        input.addEventListener('input', function() {
+            if (this.value.trim()) {
                 this.parentElement.classList.remove('error');
             }
         });
