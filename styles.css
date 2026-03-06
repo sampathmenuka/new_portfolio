@@ -168,6 +168,12 @@ img {
     width: 100%;
 }
 
+.nav-link:focus,
+.nav-link:focus-visible {
+    outline: 2px solid var(--green-400);
+    outline-offset: 4px;
+}
+
 .resume-btn {
     padding: 0.5rem 1rem;
     background-color: var(--green-400);
@@ -181,6 +187,12 @@ img {
 .resume-btn:hover {
     background-color: #86efac;
     box-shadow: 0 10px 15px -3px rgba(74, 222, 128, 0.25);
+}
+
+.resume-btn:focus,
+.resume-btn:focus-visible {
+    outline: 2px solid var(--lightest-slate);
+    outline-offset: 2px;
 }
 
 .mobile-menu-btn {
@@ -368,6 +380,12 @@ img {
 .social-link:hover {
     color: var(--green-400);
     transform: translateY(-4px);
+}
+
+.social-link:focus,
+.social-link:focus-visible {
+    outline: 2px solid var(--green-400);
+    outline-offset: 2px;
 }
 
 .social-icon {
@@ -562,7 +580,7 @@ img {
     font-size: 2rem;
     font-weight: bold;
     color: var(--lightest-slate);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     white-space: nowrap;
 }
 
@@ -582,6 +600,13 @@ img {
     .hero-name {
         font-size: 3.5rem;
     }
+}
+
+.hero-location {
+    font-size: 1rem;
+    color: var(--green-400);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
 }
 
 .hero-tagline {
@@ -615,6 +640,62 @@ img {
 
 .hero-cta:hover {
     background-color: rgba(74, 222, 128, 0.1);
+}
+
+.hero-cta:focus,
+.hero-cta:focus-visible {
+    outline: 2px solid var(--green-400);
+    outline-offset: 2px;
+}
+
+/* ===== Technical Highlights Section ===== */
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.highlight-card {
+    background: linear-gradient(135deg, rgba(74, 222, 128, 0.05) 0%, rgba(100, 255, 218, 0.03) 100%);
+    border: 1px solid rgba(74, 222, 128, 0.1);
+    border-radius: 0.5rem;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.highlight-card:hover {
+    border-color: var(--green-400);
+    background: linear-gradient(135deg, rgba(74, 222, 128, 0.1) 0%, rgba(100, 255, 218, 0.08) 100%);
+    transform: translateY(-4px);
+}
+
+.highlight-icon {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 auto 1rem;
+    color: var(--green-400);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.highlight-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.highlight-card h3 {
+    font-size: 1.25rem;
+    color: var(--lightest-slate);
+    margin-bottom: 0.75rem;
+}
+
+.highlight-card p {
+    color: var(--slate);
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
 
 /* ===== Experience Section ===== */
@@ -763,6 +844,12 @@ img {
 .skill-tab:hover {
     color: var(--green-400);
     background-color: rgba(74, 222, 128, 0.05);
+}
+
+.skill-tab:focus,
+.skill-tab:focus-visible {
+    outline: 2px solid var(--green-400);
+    outline-offset: 2px;
 }
 
 .skill-tab.active {
@@ -1054,6 +1141,12 @@ img {
     transform: translateX(4px);
 }
 
+.project-github-link:focus,
+.project-github-link:focus-visible {
+    outline: 2px solid var(--green-400);
+    outline-offset: 2px;
+}
+
 .project-github-link svg {
     flex-shrink: 0;
 }
@@ -1247,6 +1340,12 @@ img {
 
 .submit-btn:hover {
     background-color: rgba(74, 222, 128, 0.1);
+}
+
+.submit-btn:focus,
+.submit-btn:focus-visible {
+    outline: 2px solid var(--green-400);
+    outline-offset: 2px;
 }
 
 .spinner {
