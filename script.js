@@ -193,10 +193,20 @@ function initSmoothScroll() {
     });
 }
 
-// ===== Contact Form (Formspree) =====
-// TO ACTIVATE: Sign up at https://formspree.io, create a form, and replace
-// 'YOUR_FORM_ID' below with your actual Formspree form ID (e.g. 'xpwzgkqb')
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+// ===== Contact Form (EmailJS) =====
+// EmailJS Configuration
+const EMAILJS_SERVICE_ID = 'service_a26vzyk';
+const EMAILJS_PUBLIC_KEY = 'qkONxvHsQIu_pQEHxX70I';
+const EMAILJS_TEMPLATE_ID = 'template_zoby8sn';
+
+// Initialize EmailJS
+initEmailJS();
+
+function initEmailJS() {
+    if (typeof emailjs !== 'undefined') {
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+    }
+}
 
 function initContactForm() {
     const form = document.getElementById('contactForm');
@@ -238,43 +248,32 @@ function initContactForm() {
         submitBtn.disabled = true;
         if (spinner) spinner.classList.remove('hidden');
 
-        // Check if Formspree ID has been configured
-        if (FORMSPREE_ENDPOINT.includes('YOUR_FORM_ID')) {
-            // Fallback: open mailto if Formspree not yet configured
-            const mailtoLink = `mailto:sampathwgw@gmail.com?subject=Portfolio Contact: ${encodeURIComponent(name.value)}&body=${encodeURIComponent(`Name: ${name.value}\nEmail: ${email.value}\n\nMessage:\n${message.value}`)}`;
-            window.location.href = mailtoLink;
-            formMessage.textContent = '📧 Opening your email client...';
-            formMessage.classList.add('success');
-            submitBtn.disabled = false;
-            if (spinner) spinner.classList.add('hidden');
-            setTimeout(() => { form.reset(); formMessage.textContent = ''; formMessage.className = 'form-message'; }, 2000);
-            return;
-        }
-
         try {
-            const response = await fetch(FORMSPREE_ENDPOINT, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: name.value.trim(),
-                    email: email.value.trim(),
-                    message: message.value.trim()
-                })
-            });
+            // Prepare EmailJS template parameters
+            const templateParams = {
+                name: name.value.trim(),
+                email: email.value.trim(),
+                message: message.value.trim(),
+                title: name.value.trim(),
+                time: new Date().toLocaleString()
+            };
 
-            if (response.ok) {
+            // Send email via EmailJS
+            const response = await emailjs.send(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_TEMPLATE_ID,
+                templateParams
+            );
+
+            if (response.status === 200) {
                 formMessage.textContent = '✅ Message sent! I\'ll get back to you soon.';
                 formMessage.classList.add('success');
                 form.reset();
             } else {
-                const data = await response.json();
-                throw new Error(data.error || 'Submission failed');
+                throw new Error('Failed to send email');
             }
         } catch (error) {
-            console.error('Form error:', error);
+            console.error('EmailJS Error:', error);
             formMessage.textContent = '❌ Could not send message. Please email sampathwgw@gmail.com directly.';
             formMessage.classList.add('error-msg');
         } finally {
