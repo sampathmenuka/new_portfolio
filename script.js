@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
         offset: 100
     });
 
+    // Initialize EmailJS with a small delay to ensure library loads
+    setTimeout(initEmailJS, 100);
+
     // Initialize all components
     initMobileMenu();
     initSmoothScroll();
@@ -199,12 +202,11 @@ const EMAILJS_SERVICE_ID = 'service_a26vzyk';
 const EMAILJS_PUBLIC_KEY = 'RoO8pal5DR0sAgHEd';
 const EMAILJS_TEMPLATE_ID = 'template_zoby8sn';
 
-// Initialize EmailJS
-initEmailJS();
-
 function initEmailJS() {
     if (typeof emailjs !== 'undefined') {
-        emailjs.init(EMAILJS_PUBLIC_KEY);
+        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    } else {
+        console.error('EmailJS library not loaded');
     }
 }
 
