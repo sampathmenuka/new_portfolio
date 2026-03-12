@@ -196,7 +196,7 @@ function initSmoothScroll() {
 // ===== Contact Form (EmailJS) =====
 // EmailJS Configuration
 const EMAILJS_SERVICE_ID = 'service_a26vzyk';
-const EMAILJS_PUBLIC_KEY = 'qkONxvHsQIu_pQEHxX70I';
+const EMAILJS_PUBLIC_KEY = 'RoO8pal5DR0sAgHEd';
 const EMAILJS_TEMPLATE_ID = 'template_zoby8sn';
 
 // Initialize EmailJS
